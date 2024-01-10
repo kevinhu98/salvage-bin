@@ -9,6 +9,7 @@ function App() {
         'Bloodthirster': ["BF Sword", "NegatronCloak"]
         
     }
+    
     //todo: loop
     const itemImages = {
         'Deathblade': 'https://ap.tft.tools/img/items_s10/Deathblade.jpg?w=32',
@@ -27,25 +28,35 @@ function App() {
     };
 
     // when clicking from table, should add item to inventory
-    const handleItemClick = (item) => {
-        setOwnedItems([...ownedItems, item]);
+    const handleAddItemClick = (item) => {
+        console.log('adding item to inv', item);
+        setOwnedItems([...ownedItems, item].sort());
     };
 
 
     // when clicking from inventory, should remove item from inventory
-    const handleInventoryClick = () => {
-
+    const handleInventoryClick = (item) => {
+        console.log('handling inventory click for', item);
+        const indexToRemove = ownedItems.findIndex((elem) => elem === item);
+        console.log(indexToRemove);
+        const updatedOwnedItems = [...ownedItems];
+        if (indexToRemove !== -1) {
+            updatedOwnedItems.splice(indexToRemove, 1);
+            console.log('update', updatedOwnedItems)
+            setOwnedItems(updatedOwnedItems)
+        };
     };
+    /*
     const renderedItems = itemList.map((item) => {
-        return <ItemDisplay onClick={handleItemClick} item={item}/>
+        return <ItemDisplay onClick={handleAddItemClick} items={items}/>
     });
-
+    */
     
     return (
         <div> 
-            {renderedItems}
+            <ItemDisplay items={itemList} onClick={handleAddItemClick}></ItemDisplay>
             <div> 
-                <OwnedItemsList items={ownedItems}></OwnedItemsList>
+                <OwnedItemsList items={ownedItems} onClick={handleInventoryClick}></OwnedItemsList>
             </div>
             <div>
                 <OwnedComponentsList items={ownedItems}></OwnedComponentsList>

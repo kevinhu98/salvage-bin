@@ -1,13 +1,18 @@
 
-// fix on click to img not div
+import Item from "./Item";
 
-function ItemDisplay({item, onClick}) {
-    const handleClick = () => {
+function ItemDisplay({items, onClick}) {
+    const handleClick = (item) => {
         onClick(item);
     }
+
+    const renderedItems = items.map((item) => {
+        return <Item name={item} onClick={handleClick} />
+    });
+
     return (
-        <div onClick={handleClick}> 
-            <img src={`https://ap.tft.tools/img/items_s10/${item}.jpg?w=32`}></img>
+        <div > 
+            {renderedItems}
         </div>
     )
 };
