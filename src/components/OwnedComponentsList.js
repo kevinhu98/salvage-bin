@@ -14,12 +14,9 @@ function OwnedComponentsList({items}){
         else {
             ownedComponents.push(item);
         }
-        console.log(ownedComponents, 'sorting');
         ownedComponents.sort();
-        console.log(ownedComponents)
     });
     
-    console.log(ownedComponents)
     const ownedComponentsDisplay = ownedComponents.map((item) => {
         return (
         <div> 

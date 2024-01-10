@@ -1,12 +1,11 @@
-function OwnedItemsList({items, onClick}){
-    const handleClick = (item) => {
-        onClick(item);
-    }
+import Item from "./Item";
+
+function OwnedItemsList({items, onDeleteClick}){
 
     const ownedItemsDisplay = items.map((item)=> {
         return (
-            <div onClick={handleClick}>
-                <img src={`https://ap.tft.tools/img/items_s10/${item}.jpg?w=32`}></img>
+            <div> 
+                <Item name={item} onClick={onDeleteClick}></Item> 
             </div>
         );
     })
@@ -16,7 +15,6 @@ function OwnedItemsList({items, onClick}){
             Your Items: {ownedItemsDisplay}
         </div>
     );
-    
 }
 
 export default OwnedItemsList;

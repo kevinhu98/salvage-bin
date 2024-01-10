@@ -1,6 +1,7 @@
 
 function Item({name, onClick}) {
     const handleClick = () => {
+        console.log('handling click for ', name);
         onClick(name);
     };
 
